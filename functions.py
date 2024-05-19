@@ -1,4 +1,4 @@
-import smtplib,hashlib
+import smtplib
 
 def send_mail(user_mail,msg,name,surname):
     my_mail = "semihserdarsahin@gmail.com"
