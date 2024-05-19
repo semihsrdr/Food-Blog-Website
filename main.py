@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,flash
-import requests,datetime,os
+import datetime,os
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
