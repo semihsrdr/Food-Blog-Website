@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,flash
-import requests,datetime
+import requests,datetime,os
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
@@ -15,9 +15,9 @@ year=datetime.datetime.now().year
 
 app=Flask(__name__)
 ckeditor = CKEditor(app)
-app.config['SECRET_KEY'] ="hello_semih2"
+app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 Bootstrap5(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///food_website.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///posts.db")
 login_manager = LoginManager()
 login_manager.init_app(app)
 
