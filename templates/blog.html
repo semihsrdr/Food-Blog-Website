@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+{% block title%}Recipes{% endblock %}
+{% block content %}
+    <main class="container my-4">
+        {% if current_user.is_authenticated %}
+        <a href={{url_for('add_post')}} class="btn btn-primary col-2 mb-3">Add New Recipe</a>
+        {% endif %}
+        <div class="row mb-2">
+            {% for food in food_data %}
+            <div class="col-md-6 food-item">
+              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                  <strong class="d-inline-block mb-2 text-primary-emphasis">{{food.author.name}}</strong>
+                  <h3 class="mb-0">{{food["title"]}}</h3>
+                  <div class="mb-1 text-body-secondary">{{food.date}}</div>
+                  <p class="card-text mb-auto">{{food["subtitle"]}}.</p>
+                  <a href={{url_for('go_post',index=food.id)}} class="icon-link gap-1 icon-link-hover stretched-link">
+                    Continue reading
+                    <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                  </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <svg width="200" height="250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                      <title>Placeholder</title>
+                      <rect width="100%" height="100%" fill="#55595c"></rect>
+                      <image href={{food['img_url']}} x="0" y="0" height="250px" width="200px"/>
+                    </svg>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </main>
+
+{% endblock %}

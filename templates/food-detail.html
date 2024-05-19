@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}YummyFood {{food.title}}{% endblock %}
+{% block content %}
+
+      <div class="px-4 pt-2 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold text-body-emphasis">{{food['title']}}</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">{{food['subtitle']}}</p>
+        </div>
+        <div class="overflow-hidden" style="max-height: 100vh;">
+          <div class="container px-5 py-3">
+            <img id="food-image" src={{food['img_url']}} class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6 mx-auto" style="text-align: left;">
+            <p class="lead mb-4">{{food['body']|safe}}</p>
+        </div>
+        {% if current_user.is_authenticated and current_user.id==id %}
+        <div class="container" style="text-align: right;">
+          <a href={{url_for('edit_post',index=food['id'])}} class="btn btn-secondary my-3">Edit Post</a>
+          <a href={{url_for('delete_post',index=food['id'])}} class="btn btn-danger my-3">Delete Post</a>
+        </div>
+        {% endif %}
+      </div>
+        <div class="container col-6 text-left">
+            {% if current_user.is_authenticated %}
+                {{ ckeditor.load() }}
+                {{ render_form(form) }}
+            {% endif %}
+            <h3 class="mt-5">Comments</h3>
+            <ul style="margin-top:2%; list-style: none; padding: 0;">
+                {% for comment in comments %}
+                    {{ ckeditor.config(name='text') }}
+                    <li style="display: flex; align-items: flex-start; margin-bottom: 1.5rem; background-color: #f9f9f9; padding: 10px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <img style="width: 45px; height: 45px; border-radius: 50%; margin-right: 15px;" src="{{ comment.author.email|gravatar }}">
+                        <div>
+                            <h4 style="margin: 0 0 5px 0; font-size: 1.1rem; color: #333;">{{ comment.text|safe }}</h4>
+                            <p style="font-weight: 200; font-size: 0.9rem; color: #777; margin: 0;">{{ comment.author.name }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+{% endblock %}

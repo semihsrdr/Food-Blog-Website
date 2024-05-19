@@ -1,0 +1,14 @@
+
+{% extends "base.html"%}
+{% block title%}Share Recipe{% endblock %}
+{% block content %}
+{% from 'bootstrap5/form.html' import render_form %}
+    <div class="container py-4">
+        {{ ckeditor.load() }}
+        {{ render_form(form) }}
+    </div>
+
+{% endblock %}
+
+  
+  

@@ -1,0 +1,43 @@
+
+{% extends "base.html"%}
+{% block title%}Sign Up{% endblock %}
+{% block content %}
+      <div class="container form-container my-5 col-xxl-3 col-xl-3 col-lg-5 col-md-5 col-12">
+        <main class="form-signin w-100 m-auto">
+            <form action={{url_for('sign_up')}} method="post">
+              <div class="content">
+                  <img class="mb-4" src="/static/food-dish-svgrepo-com.svg" alt="Food Dish" width="72" height="57">
+                  <p id="brand-name" class="navbar-brand">YummyFood</p>
+              </div>
+              <h1 class="h3 mb-3 fw-normal">Register</h1>
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                      <p style="color:red;font-weight:500;text-align:center;">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <div class="form-floating my-2">
+                <input name="name" type="text" class="form-control" id="floatingText" placeholder="Name">
+                <label for="floatingInput">Name</label>
+              </div>
+              <div class="form-floating my-2">
+                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email Address</label>
+              </div>
+              <div class="form-floating my-2">
+                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="form-floating my-2">
+                <input name="password2" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password Again</label>
+              </div>
+
+              <button class="btn btn-primary w-100 py-2" type="submit">Submit</button>
+            </form>
+          </main>
+      </div>
+
+{% endblock %}
+

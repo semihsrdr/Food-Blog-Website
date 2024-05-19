@@ -1,0 +1,43 @@
+
+.nav-icon{
+    margin-left: 10px;
+    margin-right: 10px;
+    size: 40px;
+}
+.nav-icon a{
+    background-color: white;
+    color: black;
+}
+.nav-icon a i{
+    font-size: 2.2em;
+}
+.nav-icon a:hover{
+    opacity: 60%;
+    transition: 0.3s;
+}
+.logo{
+    margin-left:10px;
+}
+.navbar-brand{
+    font-weight: 550;
+}
+.nav-item:hover{
+    font-weight: 500;
+}
+.food-image{
+    border-radius: 10%;
+}
+.content {
+    display: flex; /* This enables flexbox */
+    align-items: center; /* This vertically centers the items if they are of different heights */
+}
+
+.content img {
+    margin-right: 10px; /* Adds space between the image and the paragraph */
+}
+#brand-name{
+    font-size:1.5em;
+}
+.food-item:hover{
+    opacity:0.75
+}
