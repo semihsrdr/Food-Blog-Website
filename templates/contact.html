@@ -3,7 +3,17 @@
 {% block title%}Contact{% endblock %}
 {% block content %}
 
-  
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+              {% if msg == "Your Message Hasn't Sent!" %}
+                  <h5 style="text-align:center; background:pink; font-weight:300" class="py-3 mb-0">{{msg}}</h5>
+              {% else %}
+                  <h5 style="text-align:center; background:#CDFADB; font-weight:300" class="py-3 mb-0">{{msg}}</h5>
+              {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
         <div class="container mt-5">
           <h1>Contact Us!</h1>
           <form action={{url_for('contact_page')}} method="POST" class="row g-3 my-5">

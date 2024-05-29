@@ -9,7 +9,9 @@ from functions import send_mail
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_gravatar import Gravatar
+from dotenv import load_dotenv
 
+load_dotenv()
 
 year=datetime.datetime.now().year
 
@@ -121,8 +123,12 @@ def contact_page():
         msg=request.form["comments"]
         name=request.form["firstName"]
         surname=request.form["lastName"]
-        send_mail(user_address,msg,name,surname)
-
+        try:
+            send_mail(user_address,msg,name,surname)
+            flash("Your Message Has Successfully Sent!")
+        except Exception as e:
+            print(f"Error {e}")
+            flash("Your Message Hasn't Sent!")
         return render_template("contact.html",year=year)
     return render_template("contact.html",year=year)
 
@@ -182,7 +188,7 @@ def logout():
     logout_user()
     return redirect(url_for("main_page"))
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
 
 
 
